@@ -21,7 +21,7 @@
                     {% set index = row*cols + col %}
                     {% if index < gifs|length %}
                     <a href={{gifs[index]}}>
-                        <img src={{ gifs[index] }} class="img-thumbnail" alt="">
+                        <img src={{ gifs[index] }} class="img-thumbnail" alt="" loading="lazy">
                     </a>
                     {% else %}
                     {% endif %}
