@@ -63,7 +63,7 @@ max_ids = 50
 number_of_iterations = math.floor(len(ids) / max_ids)
 
 for i in range(number_of_iterations):
-    id_strings = ",".join(ids[i*max_ids:(i+1)*max_ids])
+    id_strings = ",".join([str(i) for i in ids[i*max_ids:(i+1)*max_ids]])
     response = requests.get('https://g.tenor.com/v1/gifs?media_filter=minimal&key='+key+'&ids='+str(id_strings)).json()
 
     for result in response['results']:
@@ -71,7 +71,7 @@ for i in range(number_of_iterations):
 
 # REMAINDER
 remaining = len(ids) - max_ids * number_of_iterations
-id_strings = ",".join(ids[len(ids) - remaining:])
+id_strings = ",".join([str(i) for i in ids[len(ids) - remaining:]])
 response = requests.get('https://g.tenor.com/v1/gifs?media_filter=minimal&key='+key+'&ids='+str(id_strings)).json()
 for result in response['results']:
     gifs.append(result['url'])
