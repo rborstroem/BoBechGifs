@@ -45,7 +45,11 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = maria_db
 db = SQLAlchemy(app)
 
-results = db.session.execute(GifMood).all()
+#db.create_all()
+
+gifmood = db.Table('GifMood', db.metadata, autoload=True, autoload_with=db.engine)
+
+results = db.session.query(gifmood).all()
 
 ids, moods = zip(*results)
 
