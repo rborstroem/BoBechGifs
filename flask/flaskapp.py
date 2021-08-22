@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
 import sys
@@ -12,7 +13,9 @@ db_user = os.getenv('DB_USER')
 db_pass = os.getenv('DB_PASS')
 db_host = os.getenv('DB_HOST')
 db_db = os.getenv('DB_DB')
+maria_db = os.getenv('JAWSDB_MARIA_URL')
 
+'''
 # Try to connect to database
 # If errors occurs, set use_db to false
 try: 
@@ -35,9 +38,17 @@ try:
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB platform: {e}")
 
-
+'''
 
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = maria_db
+db = SQLAlchemy(app)
+
+results = db.session.execute(GifMood).all()
+
+ids, moods = zip(*results)
+
 
 # TODO: Fetch GIFs from database
 gifs = ['https://c.tenor.com/54UdL_zUuG0AAAAC/bo-bech-med-kniven-for-struben.gif', 'https://c.tenor.com/0yhDLNgdffIAAAAC/med-kniven-for-struben-bo-bech.gif', 'https://c.tenor.com/OQyn2OuUrx4AAAAd/bo-bech-med-kniven-for-struben.gif', 
