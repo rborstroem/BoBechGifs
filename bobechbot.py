@@ -15,6 +15,8 @@ token = os.getenv('DISCORD_TOKEN')
 key = os.getenv('TENOR_KEY')
 db_user = os.getenv('DB_USER')
 db_pass = os.getenv('DB_PASS')
+db_host = os.getenv('DB_HOST')
+db_db = os.getenv('DB_DB')
 
 # Initialize usage of database set to true
 use_db = True
@@ -25,9 +27,9 @@ try:
     conn = mariadb.connect(
         user=db_user,
         password=db_pass,
-        host="127.0.0.1",
+        host=db_host,
         port=3306,
-        database="bobechgifs"
+        database=db_db
     )
 
     cur = conn.cursor()
@@ -89,7 +91,7 @@ async def on_message(message):
 # Given mood, use query to find all ids with this mood
 # return a random id
 def get_id_from_mood(mood_type):
-    cur.execute("SELECT ID, MoodType FROM gifmood WHERE MoodType=?", (mood_type,))
+    cur.execute("SELECT ID, MoodType FROM GifMood WHERE MoodType=?", (mood_type,))
     ids,_ = zip(*cur)
     id = random.choice(ids)
     return id
