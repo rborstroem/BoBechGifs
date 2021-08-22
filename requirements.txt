@@ -2,3 +2,4 @@ flask
 gunicorn
 python-dotenv
 flask_sqlalchemy
+mysqlclient
