@@ -55,8 +55,10 @@ results = db.session.query(gifmood).all()
 
 ids, moods = zip(*results)
 
-moods = list(set(moods)).sort()
-ids = list(set(ids)).sort()
+moods = list(set(moods))
+moods.sort()
+ids = list(set(ids))
+ids.sort()
 preview_gifs = []
 gifs = []
 
