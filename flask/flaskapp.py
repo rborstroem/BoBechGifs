@@ -1,4 +1,14 @@
 from flask import Flask, render_template
+from dotenv import load_dotenv
+import os
+import sys
+
+# Load env variables
+load_dotenv()
+
+token = os.getenv('TEST')
+print('TOKEN: ' + token, file=sys.stderr)
+
 app = Flask(__name__)
 
 # TODO: Fetch GIFs from database
