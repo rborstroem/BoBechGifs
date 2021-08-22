@@ -7,7 +7,6 @@ import sys
 load_dotenv()
 
 token = os.getenv('TEST')
-print('TOKEN: ' + token, file=sys.stderr)
 
 app = Flask(__name__)
 
@@ -20,7 +19,7 @@ moods = ['angry', 'annoyed', 'cheerful', 'disappointed', 'disgusted', 'funny', '
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html', gifs=gifs, moods=moods)
+    return render_template('home.html', gifs=gifs, moods=moods, token=token)
 
 if __name__ == '__main__':
     app.run(debug=True)
