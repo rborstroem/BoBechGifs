@@ -16,6 +16,6 @@ for x in unique_ids:
 
 print(num)
 
-with open("unique_ids.csv", "w") as f:
+with open("ids.txt", "w") as f:
     for id in unique_ids:
         f.write(id + ", ")
