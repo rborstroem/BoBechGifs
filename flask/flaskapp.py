@@ -42,25 +42,9 @@ preview_gifs = []
 gifs = []
 
 
-# Create a dictionary with mood as key
-# containing list of ids with that mood
-# 
-moods_gif = dict() 
-ids_moods = dict()
-
-for mood in moods:
-    moods_gif[mood] = []
-    for (id, mood_type) in results:
-        if (mood == mood_type):
-            moods_gif[mood].append(id)
-
-for id in ids:
-    ids_moods[id] = []
-    for (gif_id, mood_type) in results:
-        if (gif_id == id):
-            ids_moods[id].append(mood_type)
-
-
+# Create a list for each id
+# containing list of moods with that mood
+# transformed into string
 id_moods = []
 
 for idx,id in enumerate(ids):
@@ -72,10 +56,6 @@ for idx,id in enumerate(ids):
     mood_data = ("-").join(moods_for_this_id)
     id_moods.append(mood_data)
     
-
-# for test in id_moods:
-#    print(test)
-
 
 max_ids = 50
 number_of_iterations = math.floor(len(ids) / max_ids)
@@ -99,7 +79,7 @@ for result in response['results']:
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html', preview_gifs=preview_gifs, moods=moods, gifs=gifs, ids=ids, moods_gif=moods_gif, ids_moods=ids_moods, id_moods=id_moods)
+    return render_template('home.html', preview_gifs=preview_gifs, moods=moods, gifs=gifs, ids=ids, id_moods=id_moods)
 
 if __name__ == '__main__':
     app.run(debug=True)
