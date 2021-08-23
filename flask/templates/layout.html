@@ -26,7 +26,9 @@
         $( "#alert-popup" ).stop(true, false).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
       }
 
-
+      // Function for dynamically change which gifs are shown
+      // by changing display class based on if gif
+      // has specified mood.
       $(document).ready(function() { 
         $(".mood-button").click(function() {
           mood = this.id;
@@ -43,6 +45,11 @@
               }
           });
         });
+      });
+
+      $(document).ready(function() { 
+        $("#All").trigger("click");
+        $("#All").trigger("focus");
       });
 
     </script>

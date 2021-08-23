@@ -2,40 +2,20 @@
 
 {% block content %}
     <div class="container">
-        <h1 class="d-flex justify-content-center">Jamen, hvad er der at sige?</h1>
-        <div class="d-flex justify-content-center">
-            <div class="btn-group-justified mb-4 text-center" role="group" aria-label="Mood buttons">
+        <h1 class="d-flex justify-content-center mt-4">Bo Bech Gif Picker</h1>
+        <span class="d-flex justify-content-center mb-4">Choose a mood, and click on a gif to easily copy the link. Enjoy.</span>
+        <div class="d-flex justify-content-center bg-secondary mb-4">
+            <div class="btn-group-justified pb-4 pt-4 text-center w-75" role="group" aria-label="Mood buttons">
                 {% for mood in moods %}
-                <!-- TODO: Add button functionality -->
-                <!--<button type="button" class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}" onclick="OnMoodClick(this.id)">{{mood}}</button>-->
-                <button type="button" class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}">{{mood}}</button>
+                    <button type="button" class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}">{{mood}}</button>
                 {% endfor %}
             </div>
         </div>
-        <!--
-        {% set cols = 4 %}
-        {% set rows = ((gifs|length) / cols)|round(0, 'ceil')|int %}
-        {% for row in range(rows) %}
-            <div class="row mb-4">
-                {% for col in range(cols) %}
-                <div class="col d-flex justify-content-center position-relative" id="gif-container">
-                    {% set index = row*cols + col %}
-                    {% if index < gifs|length %}
-                    <img style="cursor: pointer; border: 0;" src={{ preview_gifs[index] }} class="img-thumbnail" alt={{ gifs[index] }} loading="lazy" onclick="GifClickFunction(this.alt)">
-                    <div class="copy-div d-flex justify-content-center align-items-center bg-primary"></div>
-                    <div class="copy-text-div d-flex justify-content-center align-items-center text-white">Copy</div>
-                    {% else %}
-                    {% endif %}
-                </div>
-                {% endfor %}
-            </div>
-        {% endfor %}
-        -->
-
+       
         <div class="row mb-4">
             {% for index in range(gifs|length) %}
-                <div class="col-md-3 d-flex justify-content-center position-relative">
-                    <img data-moods={{ id_moods[index] }} id={{ ids[index] }} style="cursor: pointer; border: 0;" src={{ preview_gifs[index] }} class="img-thumbnail" alt={{ gifs[index] }} loading="lazy" onclick="GifClickFunction(this.alt)">
+                <div class="col-md-3 d-flex justify-content-center position-relative my-0 px-0">
+                    <img data-moods={{ id_moods[index] }} id={{ ids[index] }} style="cursor: pointer; border: 0; border-radius: 18.5px;" src={{ preview_gifs[index] }} class="img-thumbnail w-100" alt={{ gifs[index] }} loading="lazy" onclick="GifClickFunction(this.alt)">
                     <div class="copy-div d-flex justify-content-center align-items-center bg-primary"></div>
                     <div class="copy-text-div d-flex justify-content-center align-items-center text-white">Copy</div>
                 </div>
@@ -48,5 +28,7 @@
             </div>
         </div>
     </div>
+    <span class="d-flex justify-content-center"><em>Jamen, hvad er der at sige?</em></span>
+    <span class="d-flex justify-content-center mb-4">A hobby project by iSail and Rabow (2021)</span>
 
 {% endblock content %}
