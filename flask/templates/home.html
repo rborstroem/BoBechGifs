@@ -7,7 +7,7 @@
             <div class="btn-group-justified mb-4 text-center" role="group" aria-label="Mood buttons">
                 {% for mood in moods %}
                 <!-- TODO: Add button functionality -->
-                <button type="button" class="btn btn-outline-primary mb-2">{{mood}}</button>
+                <button type="button" class="btn btn-outline-primary mb-2" id="{{mood}}-button" onclick="OnMoodClick(this.id)">{{mood}}</button>
                 {% endfor %}
             </div>
         </div>
@@ -20,12 +20,19 @@
                 <div class="col d-flex justify-content-center">
                     {% set index = row*cols + col %}
                     {% if index < gifs|length %}
-                    <img src={{ preview_gifs[index] }} class="img-thumbnail" alt={{ gifs[index] }} loading="lazy" onclick="navigator.clipboard.writeText(this.alt)">
+                    <img style="cursor: pointer;" src={{ preview_gifs[index] }} class="img-thumbnail" alt={{ gifs[index] }} loading="lazy" onclick="GifClickFunction(this.alt)">
                     {% else %}
                     {% endif %}
                 </div>
                 {% endfor %}
             </div>
         {% endfor %}
+
+        <div class="d-flex justify-content-center fixed fixed-bottom">
+            <div class="alert alert-success position-relative w-30" id="alert-popup" style="display:none;">
+                <strong>Copied!</strong> Gif copied to clipboard. Ready for use. 
+            </div>
+        </div>
     </div>
+
 {% endblock content %}
