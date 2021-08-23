@@ -26,9 +26,24 @@
         $( "#alert-popup" ).stop(true, false).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
       }
 
-      function OnMoodClick(mood) {
-        console.log(mood);
-      }
+
+      $(document).ready(function() { 
+        $(".mood-button").click(function() {
+          mood = this.id;
+          console.log(mood)
+          $('.img-thumbnail').each(function(i, obj) {
+              moods = $(obj).attr("data-moods")
+              if (moods.indexOf(mood) >= 0) {
+                console.log($(obj).attr("id"))
+                $(obj).parent().addClass("d-flex");
+                $(obj).parent().removeClass("d-none");
+              } else {
+                $(obj).parent().addClass("d-none");
+                $(obj).parent().removeClass("d-flex");
+              }
+          });
+        });
+      });
 
     </script>
   </body>
