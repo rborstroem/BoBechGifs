@@ -20,28 +20,17 @@
     opacity: 1; 
 }
 
+
+* {
+    box-shadow: none !important;
+    outline: none !important;  
+}
+
 .mood-button {
-    background-color: whitesmoke;
-    border: 0;
-    color: black;
+    background-color: white;
+    color: #0d6efd;
 }
 
-.mood-button:hover {
-    background-color: #0d6efd;
-    color: whitesmoke;
-    border: 0;
-}
-
-.mood-button:focus {
-    background-color: #0d6efd;
-    color: whitesmoke;
-    border: 0;
-    outline: none;
-    box-shadow: none;
-}
-
-.mood-button:focus-visible:focus-visible {
-    border: 0;
-    outline: none;
-    box-shadow: none;
+h1 {
+    font-weight: bold;
 }
