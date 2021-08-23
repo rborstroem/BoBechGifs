@@ -17,10 +17,12 @@
         {% for row in range(rows) %}
             <div class="row mb-4">
                 {% for col in range(cols) %}
-                <div class="col d-flex justify-content-center">
+                <div class="col d-flex justify-content-center position-relative" id="gif-container">
                     {% set index = row*cols + col %}
                     {% if index < gifs|length %}
-                    <img style="cursor: pointer;" src={{ preview_gifs[index] }} class="img-thumbnail" alt={{ gifs[index] }} loading="lazy" onclick="GifClickFunction(this.alt)">
+                    <img style="cursor: pointer; border: 0;" src={{ preview_gifs[index] }} class="img-thumbnail" alt={{ gifs[index] }} loading="lazy" onclick="GifClickFunction(this.alt)">
+                    <div class="copy-div d-flex justify-content-center align-items-center bg-primary"></div>
+                    <div class="copy-text-div d-flex justify-content-center align-items-center text-white">Copy</div>
                     {% else %}
                     {% endif %}
                 </div>
