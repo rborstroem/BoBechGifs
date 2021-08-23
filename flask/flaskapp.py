@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask_talisman import Talisman
 from dotenv import load_dotenv
 import os
 import sys
@@ -17,32 +18,9 @@ db_host = os.getenv('DB_HOST')
 db_db = os.getenv('DB_DB')
 maria_db = os.getenv('JAWSDB_MARIA_URL')
 
-'''
-# Try to connect to database
-# If errors occurs, set use_db to false
-try: 
-    conn = mariadb.connect(
-        user=db_user,
-        password=db_pass,
-        host=db_host,
-        port=3306,
-        database=db_db
-    )
-
-    cur = conn.cursor()
-    
-    cur.execute("SELECT ID, MoodType FROM GifMood")
-
-    ids, moods = zip(*cur)
-
-
-
-except mariadb.Error as e:
-    print(f"Error connecting to MariaDB platform: {e}")
-
-'''
 
 app = Flask(__name__)
+Talisman(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = maria_db
 db = SQLAlchemy(app)
