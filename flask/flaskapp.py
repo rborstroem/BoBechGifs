@@ -20,7 +20,7 @@ maria_db = os.getenv('JAWSDB_MARIA_URL')
 
 
 app = Flask(__name__)
-Talisman(app)
+Talisman(app, content_security_policy=None)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = maria_db
 db = SQLAlchemy(app)
