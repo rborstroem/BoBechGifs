@@ -20,9 +20,7 @@
                 <div class="col d-flex justify-content-center">
                     {% set index = row*cols + col %}
                     {% if index < gifs|length %}
-                    <a href={{gifs[index]}}>
-                        <img src={{ preview_gifs[index] }} class="img-thumbnail" alt={{ gifs[index] }} loading="lazy" onclick="navigator.clipboard.writeText(this.alt)">
-                    </a>
+                    <img src={{ preview_gifs[index] }} class="img-thumbnail" alt={{ gifs[index] }} loading="lazy" onclick="navigator.clipboard.writeText(this.alt)">
                     {% else %}
                     {% endif %}
                 </div>
