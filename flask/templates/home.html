@@ -3,16 +3,15 @@
 {% block content %}
     <div class="container">
         <div class="title-container bg-primary py-4 text-white">
-            <h1 class="d-flex justify-content-center mt-4">Bo Bech GIFs</h1>
+            <h1 class="d-flex justify-content-center mt-4">Bo Bech-GIFs</h1>
             <span class="d-flex justify-content-center mb-4 ">Vælg et humør og klik derefter på en af de&nbsp;<strong>{{ ids|length }}</strong>&nbsp;GIFs for at kopiere linket. Bon appétit!</span>
         </div>
 
         <div class="d-flex justify-content-center mt-4" id="btn-container">
             <div class="btn-group-justified pb-4 pt-4 text-center w-75" role="group" aria-label="Mood buttons">
                 {% for mood in moods %}
-                    <!--<button type="button" class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}">{{mood}}</button>-->
                     <input type="radio" class="btn-check" name="btnradio" id="{{mood}}" autocomplete="off">
-                    <label class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}" for="{{mood}}">{{mood}}</label>
+                    <label class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}" for="{{mood}}">{{mood}} ({{category_counts[mood]}})</label>
                     {% endfor %}
             </div>
         </div>
