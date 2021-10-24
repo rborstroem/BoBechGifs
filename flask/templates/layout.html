@@ -21,20 +21,17 @@
  
     <link href="static/styles.css" rel="stylesheet">
 
-
     <script>
       function GifClickFunction(gif_link) {
         navigator.clipboard.writeText(gif_link); 
         $( "#alert-popup" ).stop(true, false).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
       }
 
-      // Function for dynamically change which gifs are shown
-      // by changing display class based on if gif
-      // has specified mood.
+      // GIFs are shown or hidden by setting the display class 
+      // based on whether each GIF illustrates the specified mood
       $(document).ready(function() { 
         $(".mood-button").click(function() {
           mood = this.id;
-          console.log(mood)
           $('.img-thumbnail').each(function(i, obj) {
               moods = $(obj).attr("data-moods")
               if (moods.indexOf(mood) >= 0) {
@@ -52,7 +49,6 @@
         $("#All").trigger("click");
         $("#All").trigger("focus");
       });
-
     </script>
   </body>
 </html>
