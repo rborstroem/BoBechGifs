@@ -4,7 +4,7 @@
     <div class="container">
         <div class="title-container bg-primary py-4 text-white">
             <h1 class="d-flex justify-content-center mt-4">Bo Bech GIFs</h1>
-            <span class="d-flex justify-content-center mb-4">Choose a mood, and click on a gif to easily copy the link. Enjoy.</span>
+            <span class="d-flex justify-content-center mb-4 ">Vælg et humør og klik derefter på en af de&nbsp;<strong>{{ ids|length }}</strong>&nbsp;GIFs for at kopiere linket. Bon appétit!</span>
         </div>
 
         <div class="d-flex justify-content-center mt-4" id="btn-container">
@@ -24,14 +24,14 @@
                 <div class="col-md-3 d-flex justify-content-center position-relative my-0 px-0">
                     <img data-moods={{ id_moods[index] }} id={{ ids[index] }} style="cursor: pointer; border: 0; border-radius: 18.5px;" src={{ preview_gifs[index] }} class="img-thumbnail w-100" alt={{ gifs[index] }} loading="lazy" onclick="GifClickFunction(this.alt)">
                     <div class="copy-div d-flex justify-content-center align-items-center bg-primary"></div>
-                    <div class="copy-text-div d-flex justify-content-center align-items-center text-white">Copy</div>
+                    <div class="copy-text-div d-flex justify-content-center align-items-center text-white">Kopiér</div>
                 </div>
             {% endfor %}
         </div>
 
         <div class="d-flex justify-content-center fixed fixed-bottom">
             <div class="alert alert-success position-relative w-30" id="alert-popup" style="display:none;">
-                <strong>Copied!</strong> Gif copied to clipboard. Ready for use. 
+                <strong>Kopieret!</strong> GIF kopieret til clipboard. Klar til brug! 
             </div>
         </div>
     </div>
@@ -39,6 +39,6 @@
     <hr> 
 
     <span class="d-flex justify-content-center"><em>Jamen, hvad er der at sige?</em></span>
-    <span class="d-flex justify-content-center mb-4">A hobby project by iSail and Rabow (2021)</span>
+    <span class="d-flex justify-content-center mb-4">Et hobbyprojekt af iSail og Rabow (2021)</span>
 
 {% endblock content %}

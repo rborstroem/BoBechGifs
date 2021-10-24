@@ -37,9 +37,8 @@ moods.append('All')
 moods.sort()
 ids = list(set(ids))
 ids.sort()
-preview_gifs = []
-gifs = []
-
+preview_gifs = [] # links for preview gifs used on the webpage
+gifs = [] # links for copy of high quality gif versions
 
 # Create a list for each id
 # containing list of moods with that mood
