@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Bo Bech-GIFs</h1>
+  <h1>Bo Bech GIFs</h1>
 
   <p>
     <strong>The universal GIF language</strong>
@@ -8,8 +8,8 @@
   <p>
     <a href="./LICENSE" target="_blank">
       <img
-        alt="License: Apache"
-        src="https://img.shields.io/badge/license-Apache-blue"
+        alt="License: GPL 3.0"
+        src="https://img.shields.io/badge/license-GPL-blue"
       />
     </a>
   </p>
