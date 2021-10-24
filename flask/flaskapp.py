@@ -42,16 +42,13 @@ gifs = [] # links for copy of high quality gif versions
 # containing list of moods with that mood
 # transformed into string
 id_moods = []
-
 for idx,id in enumerate(ids):
     moods_for_this_id = ['All']
     for (gif_id, mood) in results:
         if (id == gif_id):
             moods_for_this_id.append(mood)
-
     mood_data = ("-").join(moods_for_this_id)
     id_moods.append(mood_data)
-    
 
 # Maximally 50 GIFs can be fetched from Tenor with a single API call
 tenor_limit = 50
@@ -68,7 +65,9 @@ for i in range(iterations):
         preview_gifs.append(result['media'][0]['tinygif']['url'])
         gifs.append(result['url'])
 
-# Reverse list so newest gifs are at the top
+# Reverse lists so newest gifs are at the top
+ids.reverse()
+id_moods.reverse()
 preview_gifs.reverse()
 gifs.reverse()
 
