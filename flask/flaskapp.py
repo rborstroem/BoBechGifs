@@ -22,10 +22,9 @@ maria_db = os.getenv('JAWSDB_MARIA_URL')
 app = Flask(__name__)
 Talisman(app, content_security_policy=None)
 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = maria_db
 db = SQLAlchemy(app)
-
-#db.create_all()
 
 gifmood = db.Table('GifMood', db.metadata, autoload=True, autoload_with=db.engine)
 
@@ -68,13 +67,16 @@ for i in range(number_of_iterations):
         preview_gifs.append(result['media'][0]['tinygif']['url'])
         gifs.append(result['url'])
 
-# REMAINDER
 remaining = len(ids) - max_ids * number_of_iterations
 id_strings = ",".join([str(i) for i in ids[len(ids) - remaining:]])
 response = requests.get('https://g.tenor.com/v1/gifs?media_filter=minimal&key='+key+'&ids='+str(id_strings)).json()
 for result in response['results']:
     preview_gifs.append(result['media'][0]['tinygif']['url'])
     gifs.append(result['url'])
+
+# Reverse list so newest gifs are at the top
+preview_gifs.reverse()
+gifs.reverse()
 
 @app.route('/')
 @app.route('/home')
