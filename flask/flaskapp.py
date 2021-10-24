@@ -26,8 +26,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = maria_db
 db = SQLAlchemy(app)
 
-#db.create_all()
-
 gifmood = db.Table('GifMood', db.metadata, autoload=True, autoload_with=db.engine)
 
 results = db.session.query(gifmood).all()
