@@ -56,23 +56,20 @@ for idx,id in enumerate(ids):
     id_moods.append(mood_data)
     
 
-max_ids = 50
-number_of_iterations = math.floor(len(ids) / max_ids)
-
-for i in range(number_of_iterations):
-    id_strings = ",".join([str(i) for i in ids[i*max_ids:(i+1)*max_ids]])
-    response = requests.get('https://g.tenor.com/v1/gifs?media_filter=minimal&key='+key+'&ids='+str(id_strings)).json()
+# Maximally 50 GIFs can be fetched from Tenor with a single API call
+tenor_limit = 50
+iterations  = math.ceil(len(ids) / tenor_limit)
+for i in range(iterations):
+    # 1. [1, 2, 3, ...] (ids)
+    # 2. ["1","2","3",...] (str list comprehension)
+    # 3. "1,2,3,..." (join)
+    id_strings = ",".join([str(id_no) for id_no in ids[i*tenor_limit:(i+1)*tenor_limit]])
+    request_string = 'https://g.tenor.com/v1/gifs?media_filter=minimal&key=' + key + '&ids=' + str(id_strings)
+    response = requests.get(request_string).json()
 
     for result in response['results']:
         preview_gifs.append(result['media'][0]['tinygif']['url'])
         gifs.append(result['url'])
-
-remaining = len(ids) - max_ids * number_of_iterations
-id_strings = ",".join([str(i) for i in ids[len(ids) - remaining:]])
-response = requests.get('https://g.tenor.com/v1/gifs?media_filter=minimal&key='+key+'&ids='+str(id_strings)).json()
-for result in response['results']:
-    preview_gifs.append(result['media'][0]['tinygif']['url'])
-    gifs.append(result['url'])
 
 # Reverse list so newest gifs are at the top
 preview_gifs.reverse()
