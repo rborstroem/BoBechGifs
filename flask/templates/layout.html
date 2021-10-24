@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Bo Bech Gifs</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+  <body>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+ 
+    <link href="static/styles.css" rel="stylesheet">
+
+
+    <script>
+      function GifClickFunction(gif_link) {
+        navigator.clipboard.writeText(gif_link); 
+        $( "#alert-popup" ).stop(true, false).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+      }
+
+      // Function for dynamically change which gifs are shown
+      // by changing display class based on if gif
+      // has specified mood.
+      $(document).ready(function() { 
+        $(".mood-button").click(function() {
+          mood = this.id;
+          console.log(mood)
+          $('.img-thumbnail').each(function(i, obj) {
+              moods = $(obj).attr("data-moods")
+              if (moods.indexOf(mood) >= 0) {
+                $(obj).parent().addClass("d-flex");
+                $(obj).parent().removeClass("d-none");
+              } else {
+                $(obj).parent().addClass("d-none");
+                $(obj).parent().removeClass("d-flex");
+              }
+          });
+        });
+      });
+
+      $(document).ready(function() { 
+        $("#All").trigger("click");
+        $("#All").trigger("focus");
+      });
+
+    </script>
+  </body>
+</html>
