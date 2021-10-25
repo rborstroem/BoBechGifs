@@ -34,7 +34,7 @@
       $(document).ready(function() { 
         $(".mood-button").click(function() {
           mood = this.id;
-          $('.img-thumbnail').each(function(i, obj) {
+          $('.gif').each(function(_, obj) {
               moods = $(obj).attr("data-moods")
               if (moods.indexOf(mood) >= 0) {
                 $(obj).parent().addClass("d-flex");
@@ -51,6 +51,23 @@
         $("#All").trigger("click");
         $("#All").trigger("focus");
       });
+
+      // From https://www.markuptag.com/javascript-load-more-content-on-click-button/
+      const loadmore = document.querySelector('#loadmore');
+          let currentItems = 12;
+          let increment = 12;
+          loadmore.addEventListener('click', (e) => {
+              const elementList = [...document.querySelectorAll('.gif')];
+              for (let i = currentItems; i < currentItems + increment; i++) {
+                  if (elementList[i]) elementList[i].style.display = 'block';
+              }
+              currentItems += increment;
+
+              // Load more button will be hidden after list fully loaded
+              if (currentItems >= elementList.length) {
+                  event.target.style.display = 'none';
+              }
+          })
     </script>
   </body>
 </html>
