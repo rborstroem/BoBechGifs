@@ -20,15 +20,15 @@
        
         <div class="row mb-4">
             {% for index in range(gifs|length) %}
-                <div class="col-md-3 d-flex justify-content-center position-relative my-0 px-0">
-                    {% if index < 12 %} <!-- First 12 GIFs are visible initially -->
-                        <img class="img-thumbnail w-100 gif" data-moods={{ id_moods[index] }} id={{ ids[index] }} style='display: block' src={{ preview_gifs[index] }} alt={{ gifs[index] }} onclick="GifClickFunction(this.alt)">
-                    {% else %}
+                {% if index < 12 %}
+                    <div class="col-md-3 d-flex justify-content-center position-relative my-0 px-0">
+                {% else %}
+                    <div class="col-md-3 d-none justify-content-center position-relative my-0 px-0">
+                {% endif %}
                         <img class="img-thumbnail w-100 gif" data-moods={{ id_moods[index] }} id={{ ids[index] }} src={{ preview_gifs[index] }} alt={{ gifs[index] }} onclick="GifClickFunction(this.alt)">
-                    {% endif %}
-                    <div class="copy-div d-flex justify-content-center align-items-center bg-primary"></div>
-                    <div class="copy-text-div d-flex justify-content-center align-items-center text-white">Kopiér GIF URL</div>
-                </div>
+                        <div class="copy-div d-flex justify-content-center align-items-center bg-primary"></div>
+                        <div class="copy-text-div d-flex justify-content-center align-items-center text-white">Kopiér GIF URL</div>
+                    </div>
             {% endfor %}
         </div>
 

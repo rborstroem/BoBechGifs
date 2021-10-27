@@ -18,12 +18,16 @@
         {% block content %}{% endblock %}
     </div>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
  
     <link href="static/styles.css" rel="stylesheet">
 
     <script>
+      var current_mood = 'All';
+      var currentItems = 12;
+      var increment = 12;
+      var checkedItems = 0;
+
       function GifClickFunction(gif_link) {
         navigator.clipboard.writeText(gif_link); 
         $( "#alert-popup" ).stop(true, false).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
@@ -33,16 +37,18 @@
       // based on whether each GIF illustrates the specified mood
       $(document).ready(function() { 
         $(".mood-button").click(function() {
-          mood = this.id;
+          current_mood = this.id;
+          index = 0;
           $('.gif').each(function(_, obj) {
-              moods = $(obj).attr("data-moods")
-              if (moods.indexOf(mood) >= 0) {
-                $(obj).parent().addClass("d-flex");
-                $(obj).parent().removeClass("d-none");
-              } else {
-                $(obj).parent().addClass("d-none");
-                $(obj).parent().removeClass("d-flex");
-              }
+            moods = $(obj).attr("data-moods")
+            if (moods.indexOf(current_mood) >= 0 && index < 12) {
+              $(obj).parent().addClass("d-flex");
+              $(obj).parent().removeClass("d-none");
+              index++
+            } else {
+              $(obj).parent().addClass("d-none");
+              $(obj).parent().removeClass("d-flex");
+            }
           });
         });
       });
@@ -52,22 +58,26 @@
         $("#All").trigger("focus");
       });
 
-      // From https://www.markuptag.com/javascript-load-more-content-on-click-button/
+      // Adapted from https://www.markuptag.com/javascript-load-more-content-on-click-button/
       const loadmore = document.querySelector('#loadmore');
-          let currentItems = 12;
-          let increment = 12;
-          loadmore.addEventListener('click', (e) => {
-              const elementList = [...document.querySelectorAll('.gif')];
-              for (let i = currentItems; i < currentItems + increment; i++) {
-                  if (elementList[i]) elementList[i].style.display = 'block';
+      loadmore.addEventListener('click', (e) => {
+          const elementList = [...document.querySelectorAll('.gif')];
+          var index = currentItems;
+          while (index < (currentItems + increment) && checkedItems < elementList.length) {
+              if (elementList[index]) {
+                if (elementList[index].getAttribute("data-moods").match(current_mood)) { // TODO: Is match() the right approach? There's also includes()
+                  elementList[index].parentElement.classList.add("d-flex");
+                  elementList[index].parentElement.classList.remove("d-none");
+                }
+                index++;
               }
-              currentItems += increment;
-
-              // Load more button will be hidden after list fully loaded
-              if (currentItems >= elementList.length) {
-                  event.target.style.display = 'none';
-              }
-          })
+              checkedItems++;
+          }
+          if (checkedItems >= elementList.length) {
+            event.target.style.display = 'none';
+          }
+          currentItems = index;
+      })
     </script>
   </body>
 </html>
