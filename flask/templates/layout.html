@@ -35,20 +35,19 @@
 
       // GIFs are shown or hidden by setting the display class 
       // based on whether each GIF illustrates the specified mood
-      $(document).ready(function() { 
+      $(document).ready(function() {
         $(".mood-button").click(function() {
-          // Display load button
-          // TODO: Only display load button if there's
-          // still invisible GIFs within the mood category
-          load_button.classList.add("d-inline")
-          load_button.classList.remove("d-none")
-
           current_items = 12 // Reset
           current_mood = this.id;
           index = 0;
+          still_gifs_to_load = false;
           $('.gif').each(function(_, obj) {
             moods = $(obj).attr("data-moods")
-            if (moods.indexOf(current_mood) >= 0 && index < increment) {
+            let displays_mood = moods.indexOf(current_mood) >= 0;
+            if (displays_mood && index == increment) {
+              still_gifs_to_load = true;
+            }
+            if (displays_mood && index < increment) {
               $(obj).parent().addClass("d-flex");
               $(obj).parent().removeClass("d-none");
               index++
@@ -57,6 +56,16 @@
               $(obj).parent().removeClass("d-flex");
             }
           });
+
+          // Toggle load button depending on whether there's
+          // still unloaded GIFs in this mood category
+          if (still_gifs_to_load) {
+            load_button.classList.add("d-inline");
+            load_button.classList.remove("d-none");
+          } else {
+            load_button.classList.add("d-none");
+            load_button.classList.remove("d-inline");
+          }
         });
       });
 
