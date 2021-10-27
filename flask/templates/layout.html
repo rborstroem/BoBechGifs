@@ -23,10 +23,10 @@
     <link href="static/styles.css" rel="stylesheet">
 
     <script>
-      var current_mood = 'All';
-      var currentItems = 12;
-      var increment = 12;
-      var checkedItems = 0;
+      const load_button = document.querySelector('#load-button');
+      var current_mood  = 'All';
+      var current_items = 12;
+      var increment     = 12;
 
       function GifClickFunction(gif_link) {
         navigator.clipboard.writeText(gif_link); 
@@ -37,11 +37,18 @@
       // based on whether each GIF illustrates the specified mood
       $(document).ready(function() { 
         $(".mood-button").click(function() {
+          // Display load button
+          // TODO: Only display load button if there's
+          // still invisible GIFs within the mood category
+          load_button.classList.add("d-inline")
+          load_button.classList.remove("d-none")
+
+          current_items = 12 // Reset
           current_mood = this.id;
           index = 0;
           $('.gif').each(function(_, obj) {
             moods = $(obj).attr("data-moods")
-            if (moods.indexOf(current_mood) >= 0 && index < 12) {
+            if (moods.indexOf(current_mood) >= 0 && index < increment) {
               $(obj).parent().addClass("d-flex");
               $(obj).parent().removeClass("d-none");
               index++
@@ -53,30 +60,38 @@
         });
       });
 
+      // TODO: Click isn't currently executing the above function, maybe because
+      // it's added to ".mood-button" rather than the id
       $(document).ready(function() { 
         $("#All").trigger("click");
         $("#All").trigger("focus");
       });
-
-      // Adapted from https://www.markuptag.com/javascript-load-more-content-on-click-button/
-      const loadmore = document.querySelector('#loadmore');
-      loadmore.addEventListener('click', (e) => {
-          const elementList = [...document.querySelectorAll('.gif')];
-          var index = currentItems;
-          while (index < (currentItems + increment) && checkedItems < elementList.length) {
-              if (elementList[index]) {
-                if (elementList[index].getAttribute("data-moods").match(current_mood)) { // TODO: Is match() the right approach? There's also includes()
-                  elementList[index].parentElement.classList.add("d-flex");
-                  elementList[index].parentElement.classList.remove("d-none");
-                }
-                index++;
-              }
-              checkedItems++;
+      
+      // TODO: Call this event when page has loaded (current_items should be 0, then this is called to
+      // load first set of GIFs and the load button is removed (for instance, the 'Romantic' mood
+      // category contains only 6 GIFs which are all displayed immediately; therefore, there shouldn't
+      // be a load button))
+      load_button.addEventListener('click', (e) => {
+          const elements = [...document.querySelectorAll('.gif')];
+          let range = current_items + increment;
+          
+          for (let i = 0; i < elements.length; i++) {
+            if (current_items == range) break;
+            if (i + 1 == elements.length) {
+              load_button.classList.add("d-none");
+              load_button.classList.remove("d-inline");
+            }
+            
+            // TODO: This code is very similar to the jQuery for the mood buttons; maybe create a generic
+            // method for this logic
+            let displays_mood = elements[i].getAttribute("data-moods").match(current_mood);
+            let visible       = elements[i].parentElement.classList.contains("d-flex");
+            if (displays_mood && !visible) {
+              elements[i].parentElement.classList.add("d-flex");
+              elements[i].parentElement.classList.remove("d-none");
+              current_items++;
+            }
           }
-          if (checkedItems >= elementList.length) {
-            event.target.style.display = 'none';
-          }
-          currentItems = index;
       })
     </script>
   </body>
