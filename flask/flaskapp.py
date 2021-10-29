@@ -37,10 +37,14 @@ translated_results = [('All', 'Alle')] + translated_results
 translated_moods = dict(translated_results)
 mood_set = list(translated_moods.keys())
 
-print(mood_set)
-
 category_counts = Counter(moods) # Number of GIFs of each mood
 category_counts['All'] = len(ids)
+
+
+# Get which gifs have text
+gif_db = db.Table('Gif', db.metadata, autoload=True, autoload_with=db.engine)
+has_text = [(i[0], i[4]) for i in db.session.query(gif_db).all()]
+has_text = dict(has_text)
 
 preview_gifs = [] # links for preview gifs used on the webpage
 gifs = [] # links for copy of high quality gif versions
@@ -87,7 +91,8 @@ def home():
                                         gifs=gifs, 
                                         ids=ids, 
                                         id_moods=id_moods,
-                                        translated_moods=translated_moods)
+                                        translated_moods=translated_moods,
+                                        has_text=has_text)
 
 if __name__ == '__main__':
     app.run(debug=True)

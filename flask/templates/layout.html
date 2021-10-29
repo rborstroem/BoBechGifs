@@ -21,9 +21,16 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
  
+    <!-- Toggle plugin for bootstrap -->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
     <link href="static/styles.css" rel="stylesheet">
 
     <script>
+      var showGifsWithText = false;
+      var currentMood;
+
       function GifClickFunction(gif_link) {
         navigator.clipboard.writeText(gif_link); 
         $( "#alert-popup" ).stop(true, false).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
@@ -33,10 +40,36 @@
       // based on whether each GIF illustrates the specified mood
       $(document).ready(function() { 
         $(".mood-button").click(function() {
-          mood = this.id;
-          $('.img-thumbnail').each(function(i, obj) {
+          currentMood = this.id;
+          changeViewedGifs();
+        });
+      });
+      
+      $(document).ready(function() {
+        $("#textToggler").change(function() {
+          showGifsWithText = !showGifsWithText;
+          changeViewedGifs();
+        });
+      });
+
+      $(document).ready(function() { 
+        currentMood = 'All';
+        $("#textToggler").bootstrapToggle('on');
+        $("#All").trigger("click");
+        $("#All").trigger("focus");
+      });
+
+      function changeViewedGifs() {
+        $('.img-thumbnail').each(function(i, obj) {
               moods = $(obj).attr("data-moods")
-              if (moods.indexOf(mood) >= 0) {
+              hasText = $(obj).attr("data-hasText")
+
+              // Always show gifs with no text
+              // Only show gifs with text if this has been set
+              var showGif = hasText == 0 || !(hasText == 1 && !showGifsWithText);
+
+              // Show if correct mood and showGif is true
+              if (moods.indexOf(currentMood) >= 0 &&  showGif) {
                 $(obj).parent().addClass("d-flex");
                 $(obj).parent().removeClass("d-none");
               } else {
@@ -44,13 +77,8 @@
                 $(obj).parent().removeClass("d-flex");
               }
           });
-        });
-      });
+      }
 
-      $(document).ready(function() { 
-        $("#All").trigger("click");
-        $("#All").trigger("focus");
-      });
     </script>
   </body>
 </html>
