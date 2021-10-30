@@ -8,27 +8,24 @@ import sys
 import math
 import requests
 
-# Load env variables
+# Load environment variables
 load_dotenv()
-
-# Get env variables
 tenor_key = os.getenv('TENOR_KEY')
 jawsdb_maria_url = os.getenv('JAWSDB_MARIA_URL')
 
+# Configure application
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = jawsdb_maria_url
-
 Talisman(app, content_security_policy=None)
 
+# Establish DB connection and fetch content
 db = SQLAlchemy(app)
 gifmood = db.Table('GifMood', db.metadata, autoload=True, autoload_with=db.engine)
 results = db.session.query(gifmood).all()
-
 ids, moods = zip(*results)
 ids = list(set(ids))
 ids.sort()
-
 # Get Mood translations
 moods_translated = db.Table('Mood', db.metadata, autoload=True, autoload_with=db.engine)
 translated_results = db.session.query(moods_translated).all()
@@ -39,7 +36,6 @@ mood_set = list(translated_moods.keys())
 
 category_counts = Counter(moods) # Number of GIFs of each mood
 category_counts['All'] = len(ids)
-
 
 # Get which gifs have text
 gif_db = db.Table('Gif', db.metadata, autoload=True, autoload_with=db.engine)
