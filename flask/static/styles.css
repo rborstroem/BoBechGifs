@@ -34,14 +34,19 @@
     border: 0;
 }
 
-* {
-    box-shadow: none !important;
-    outline: none !important;  
-}
-
 .mood-button {
     background-color: white;
     color: #0d6efd;
+}
+
+.twitter-tweet {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+* {
+    box-shadow: none !important;
+    outline: none !important;  
 }
 
 h1 {
