@@ -11,25 +11,29 @@
             <div class="btn-group-justified pb-4 pt-4 text-center w-75" role="group" aria-label="Mood buttons">
                 {% for mood in moods %}
                     <input type="radio" class="btn-check" name="btnradio" id="{{mood}}" autocomplete="off">
-                    <label class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}" for="{{mood}}">{{mood}} ({{category_counts[mood]}})</label>
+                    <label class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}" for="{{mood}}">{{translated_moods[mood]}} ({{category_counts[mood]}})</label>
                     {% endfor %}
             </div>
         </div>
-
+        <div class="d-flex flex-row-reverse">
+            <div class="form-check form-check-inline" id="text-toggle">
+                <label for="textToggler" class="form-check-label">Vis GIFs med captions</label>
+                <input id="textToggler" type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-on="Til" data-off="Fra" data-width="20" data-style="ios">
+            </div>
+        </div>
         <hr>
        
         <div class="row mb-4">
             {% for index in range(gifs|length) %}
-                <!-- TODO: Handle this with JavaScript upon page load -->
                 {% if index < 12 %}
                     <div class="col-md-3 d-flex justify-content-center position-relative my-0 px-0">
                 {% else %}
                     <div class="col-md-3 d-none justify-content-center position-relative my-0 px-0">
                 {% endif %}
-                        <img class="img-thumbnail w-100 gif" data-moods={{ id_moods[index] }} id={{ ids[index] }} src={{ preview_gifs[index] }} alt={{ gifs[index] }} onclick="GifClickFunction(this.alt)">
+                        <img data-moods={{ id_moods[index] }} data-hasText={{ has_text[ids[index]] }} id={{ ids[index] }} style="cursor: pointer; border: 0; border-radius: 18.5px;" src={{ preview_gifs[index] }} class="img-thumbnail w-100 gif" alt={{ gifs[index] }} loading="lazy" onclick="GifClickFunction(this.alt)">
                         <div class="copy-div d-flex justify-content-center align-items-center bg-primary"></div>
-                        <div class="copy-text-div d-flex justify-content-center align-items-center text-white">Kopiér GIF URL</div>
-                    </div>
+                        <div class="copy-text-div d-flex justify-content-center align-items-center text-white">Kopiér</div>
+                </div>
             {% endfor %}
         </div>
 
