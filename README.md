@@ -22,7 +22,7 @@
 
 </div>
 
-_bobechgifs.dk_ is a web page that allows you to communicate effectively and succinctly using the language of Bo Bech. All GIFs are hosted on [Tenor](https://tenor.com/).
+_bobechgifs.dk_ is a web page that enables you to communicate effectively and succinctly using the language of Bo Bech. All GIFs are hosted on [Tenor](https://tenor.com/).
 
 <div align="center">
   <img
