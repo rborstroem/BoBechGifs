@@ -17,3 +17,10 @@
 </div>
 
 _bobechgifs.dk_ is a web page that allows you to communicate effectively and succinctly using the language of Bo Bech. All GIFs are hosted on [Tenor](https://tenor.com/).
+
+<div align="center">
+  <img
+    alt="Stort møs"
+    src="https://c.tenor.com/0yhDLNgdffIAAAAC/med-kniven-for-struben-bo-bech.gif"
+  />
+</div)>
