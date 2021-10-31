@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div class="settings">
+        <div class="mb-3">
             <div class="d-flex justify-content-center mt-4" id="btn-container">
                 <div class="btn-group-justified pb-4 pt-4 text-center w-75" role="group" aria-label="Mood buttons">
                     {% for mood in moods %}
@@ -33,21 +33,19 @@
         <div class="separator">
         </div>
        
-        <div class="gifs-container">
-        <div class="row mb-4">
-            {% for index in range(gifs|length) %}
-                <div class="col-md-3 d-none justify-content-center position-relative my-0 px-0">
-                    <img class="img-thumbnail w-100 gif" data-moods={{ id_moods[index] }} data-hasText={{ has_text[ids[index]] }} id={{ ids[index] }} src={{ preview_gifs[index] }} alt={{ gifs[index] }} onclick="GifClickFunction(this.alt)">
-                    <div class="copy-div d-flex justify-content-center align-items-center bg-primary"></div>
-                    <div class="copy-text-div d-flex justify-content-center align-items-center text-white">Kopiér</div>
-                </div>
-            {% endfor %}
-        </div>
-
-        <div class="text-center">
-            <button type='button' class="btn btn-primary" id="load-button">Indlæs flere GIFs...</button>
-        </div>
-
+        <div class="mt-4">
+            <div class="row mb-4">
+                {% for index in range(gifs|length) %}
+                    <div class="col-md-3 d-none justify-content-center position-relative my-0 px-0">
+                        <img class="img-thumbnail w-100 gif" data-moods={{ id_moods[index] }} data-hasText={{ has_text[ids[index]] }} id={{ ids[index] }} src={{ preview_gifs[index] }} alt={{ gifs[index] }} onclick="GifClickFunction(this.alt)">
+                        <div class="copy-div d-flex justify-content-center align-items-center bg-primary"></div>
+                        <div class="copy-text-div d-flex justify-content-center align-items-center text-white">Kopiér</div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="text-center">
+                <button type='button' class="btn btn-primary" id="load-button">Indlæs flere GIFs...</button>
+            </div>
         </div>
 
         <div class="d-flex justify-content-center fixed fixed-bottom">
@@ -57,11 +55,11 @@
         </div>
     </div>
 
-    <!--<hr>--> 
-    <div class="separator">
-        <div>Testimonials</div>
+    <div class="pt-5 pb-2">
+        <div class="separator">
+            <span>Testimonials</span>
+        </div>
     </div>
-      
 
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <div class="row justify-content-center align-items-center testimonials">
@@ -90,8 +88,10 @@
         </div>
     </div> 
 
-    <div class="separator">
-        <div>Presse</div>
+    <div class="pt-4">
+        <div class="separator">
+            <span>Presse</span>
+        </div>
     </div>
 
     <div class="row justify-content-md-center align-items-center press">
@@ -106,8 +106,7 @@
         </a>
     </div>
 
-    <div class="separator">
-    </div>
+    <div class="separator"></div>
 
     <div class="footer">
         <span class="d-flex justify-content-center"><em>Jamen, hvad er der at sige?</em></span>
