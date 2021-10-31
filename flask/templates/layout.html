@@ -58,6 +58,8 @@
           clear_gifs();
           refresh_gifs(gifs_to_load=gifs_increment);
         });
+        $("#textToggler").prop('checked', true).change();
+
 
         $("#load-button").click(function() {
           refresh_gifs(gifs_to_load=gifs_increment);
