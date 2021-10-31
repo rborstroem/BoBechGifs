@@ -74,8 +74,8 @@ h1 {
     color: #0d6efd;
     z-index: 10;
     padding: 2px 20px 2px 20px;
-    margin-left: calc(100vw / 4);
-    margin-right: calc(100vw / 4);
+    margin-left: calc(100% / 3);
+    margin-right: calc(100% / 3);
     float: center;
     font-weight: bold;
 }
