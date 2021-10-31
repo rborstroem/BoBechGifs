@@ -12,6 +12,12 @@
         src="https://img.shields.io/badge/license-GPL-blue"
       />
     </a>
+    <a href="https://bobechgifs.dk" target="_blank">
+      <img
+        alt="bobechgifs.dk"
+        src="https://img.shields.io/website?down_color=lightgrey&down_message=offline&up_color=dark-green&up_message=online&url=https%3A%2F%2Fbobechgifs.dk"
+      />
+    </a>
   </p>
 
 </div>
