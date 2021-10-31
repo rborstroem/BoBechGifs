@@ -61,3 +61,44 @@ h1 {
 
 .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20rem; }
 .toggle.ios .toggle-handle { border-radius: 20rem; }
+
+.separator {
+    text-align: center;
+    border-top: 1px solid #0d6efd;
+    overflow: visible;
+}
+.separator div {
+    margin-top: -14px;
+    display: block;
+    background: #fff;
+    color: #0d6efd;
+    z-index: 10;
+    padding: 2px 20px 2px 20px;
+    margin-left: calc(100vw / 4);
+    margin-right: calc(100vw / 4);
+    float: center;
+    font-weight: bold;
+}
+
+.testimonials {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.press {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.gifs-container {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.settings {
+    margin-bottom: 20px;
+}
+
+.footer {
+    margin-top: 20px;
+}
