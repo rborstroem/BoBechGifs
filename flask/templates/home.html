@@ -1,27 +1,25 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    <div class="mb-3">
+        <div class="d-flex justify-content-center mt-4" id="btn-container">
+            <div class="btn-group-justified pb-4 pt-4 text-center w-75" role="group" aria-label="Mood buttons">
+                {% for mood in moods %}
+                    <input type="radio" class="btn-check" name="btnradio" id="{{mood}}" autocomplete="off">
+                    <label class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}" for="{{mood}}">{{translated_moods[mood]}} ({{category_counts[mood]}})</label>
+                    {% endfor %}
+            </div>
+        </div>
+        
+        <div class="d-flex flex-row-reverse justify-content-center">
+            <div class="form-check form-check-inline" id="text-toggle">
+                <label for="textToggler" class="form-check-label">Vis GIFs med captions</label>
+                <input id="textToggler" type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-on="Til" data-off="Fra" data-width="20" data-style="ios">
+            </div>
+        </div>
+    </div>
+    
     <div class="container">
-        <div class="mb-3">
-            <div class="d-flex justify-content-center mt-4" id="btn-container">
-                <div class="btn-group-justified pb-4 pt-4 text-center w-75" role="group" aria-label="Mood buttons">
-                    {% for mood in moods %}
-                        <input type="radio" class="btn-check" name="btnradio" id="{{mood}}" autocomplete="off">
-                        <label class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}" for="{{mood}}">{{translated_moods[mood]}} ({{category_counts[mood]}})</label>
-                        {% endfor %}
-                </div>
-            </div>
-            
-            <div class="d-flex flex-row-reverse justify-content-center">
-                <div class="form-check form-check-inline" id="text-toggle">
-                    <label for="textToggler" class="form-check-label">Vis GIFs med captions</label>
-                    <input id="textToggler" type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-on="Til" data-off="Fra" data-width="20" data-style="ios">
-                </div>
-            </div>
-        </div>
-        <div class="separator">
-        </div>
-       
         <div class="mt-4">
             <div class="row mb-4">
                 {% for index in range(gifs|length) %}
@@ -33,25 +31,21 @@
                 {% endfor %}
             </div>
             <div class="text-center">
-                <button type='button' class="btn btn-primary" id="load-button">Indlæs flere GIFs...</button>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-center fixed fixed-bottom">
-            <div class="alert alert-success position-relative w-30" id="alert-popup" style="display:none;">
-                <strong>Kopieret!</strong> GIF kopieret til clipboard. Klar til brug! 
+                <button type='button' class="btn btn-primary" id="load-button">Indlæs flere GIFs</button>
             </div>
         </div>
     </div>
 
-    <div class="pt-5 pb-2">
-        <div class="separator">
-            <span>Testimonials</span>
+    <div class="d-flex justify-content-center fixed fixed-bottom">
+        <div class="alert alert-success position-relative w-30" id="alert-popup" style="display:none;">
+            <strong>Kopieret!</strong> GIF kopieret til clipboard. Klar til brug! 
         </div>
     </div>
+
+    <hr data-content="TESTIMONIALS" class="hr-text mt-5">
 
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <div class="row justify-content-center align-items-center testimonials">
+    <div class="row justify-content-center align-items-center testimonials mt-4">
         <div class="col text-center">
             <blockquote class="twitter-tweet" data-conversation="none" data-dnt="true">
                 <p lang="da" dir="ltr">Du får point for brug af Bo Bech GIF. Jeg mener generelt at alt kan siges som BBGIF.</p>
@@ -77,13 +71,7 @@
         </div>
     </div> 
 
-    <div class="pt-4">
-        <div class="separator">
-            <span>Presse</span>
-        </div>
-    </div>
-
-    <div class="row justify-content-md-center align-items-center press">
+    <div class="row justify-content-md-center align-items-center press bg-light mt-2">
         <a class="text-center col-sm-auto" href="https://www.reddit.com/r/Denmark/comments/i2vevl/jeg_har_lavet_omtrent_125_bo_bech_gifs_velbekomme/">
             <img class="media-link p-3" src="/static/logos/reddit.svg" width="200" alt="Reddit">
         </a>
@@ -94,8 +82,6 @@
             <img class="media-link p-3" src="/static/logos/information.svg" width="200" alt="Dagbladet Information">
         </a>
     </div>
-
-    <div class="separator"></div>
 
     <div class="footer">
         <span class="d-flex justify-content-center"><em>Jamen, hvad er der at sige?</em></span>
