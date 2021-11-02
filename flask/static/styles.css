@@ -43,32 +43,22 @@
 .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20rem; }
 .toggle.ios .toggle-handle { border-radius: 20rem; }
 
-.separator {
-    text-align: center;
-    border-top: 1px solid #0d6efd;
-    overflow: visible;
-}
-
-.separator span {
-    margin-top: -20px;
-    display: block;
-    background: #fff;
-    color: #0d6efd;
-    z-index: 10;
-    padding: 2px 20px 2px 20px;
-    margin-left: calc(100% / 2.5);
-    margin-right: calc(100% / 2.5);
-    float: center;
-    font-weight: bold;
-    font-size: 20px;
-}
-
 .settings {
     margin-bottom: 20px;
 }
 
 .footer {
     margin-top: 20px;
+}
+
+.svg-icon {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
 }
 
 /* IDs */
@@ -90,13 +80,29 @@ h1 {
     font-weight: bold;
 }
 
-
-.svg-icon {
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+hr.hr-text {
+    position: relative;
+    border: none;
+    height: 1px;
+    background: #999;
+    opacity: .8;
+}
+  
+hr.hr-text::before {
+    content: attr(data-content);
+    display: inline-block;
+    background: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    color: rgba(13, 110, 253, 1);
+    border-radius: 30rem;
+    padding: 0.2rem 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.back-to-top {
-    position: fixed;
-    bottom: 1em;
-    right: 1em;
+hr.hr-solid {
+    border-top: 2px solid #999;
 }
