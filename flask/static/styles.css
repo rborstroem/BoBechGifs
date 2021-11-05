@@ -66,6 +66,45 @@
     background-size: auto 100%;
 }
 
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #000;
+    opacity: .25;
+}
+
+.separator:not(:empty)::before {
+    margin-right: 1em;
+}
+
+.separator:not(:empty)::after {
+    margin-left: 1em;
+}
+
+.separator > span {
+    color: #0d6efd;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.hide {
+    opacity:0;
+    transition: 10ms;
+}
+
+.show {
+    opacity:1;
+    transition: 500ms;
+    transition-timing-function: ease-in-out;
+}
+
 /* IDs */
 #tenor-logo > img {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7488%) hue-rotate(250deg) brightness(105%) contrast(105%);
@@ -85,41 +124,4 @@ h1 {
     font-weight: bold;
     font-size: 70px;
     text-shadow: 0px 2px 2px #bbbbbb, 0px 2px 2px #fff;
-}
-
-hr.hr-text {
-    position: relative;
-    border: none;
-    height: 1px;
-    background: #999;
-    opacity: .8;
-}
-  
-hr.hr-text::before {
-    content: attr(data-content);
-    display: inline-block;
-    background: #fff;
-    font-weight: bold;
-    font-size: 1rem;
-    color: rgba(13, 110, 253, 1);
-    border-radius: 30rem;
-    padding: 0.2rem 2rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-hr.hr-solid {
-    border-top: 2px solid #999;
-}
-
-.hide {
-    opacity:0;
-    transition: 10ms;
-}
-.show {
-    opacity:1;
-    transition: 500ms;
-    transition-timing-function: ease-in-out;
 }
