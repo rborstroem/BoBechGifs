@@ -22,14 +22,15 @@
   </head>
   <body>
     <!-- THE HEADER, OUTSIDE CONTAINER TO IGNORE MARGINS -->
-    <div class="title-container bg-primary bg-gradient py-4 text-white shadow">
-      <h1 class="d-flex justify-content-center text-center m-4">Bo Bech-GIFs</h1>
-      <p class="text-center m-4">Vælg et humør og klik derefter på en af de <strong>{{ ids|length }}</strong> GIFs for at kopiere linket. Bon appétit!</p>
-      <div class="text-center m-4">
-          <span class="align-middle">GIF-biblioteket kan også findes på</span>
+    <div class="bg-primary bg-gradient">
+      <div class="banner py-4 text-white shadow">
+        <h1 class="text-center m-4">Bo Bech-GIFs</h1>
+        <div class="text-center">
+          <span class="d-inline-block align-middle">via</span>
           <a id="tenor-logo" href="https://tenor.com/users/isail">
-              <img src="/static/logos/tenor.svg" width="50" alt="Tenor">
+            <img src="/static/logos/tenor.svg" width="50" alt="Tenor">
           </a>
+        </div>
       </div>
     </div>
 
@@ -37,7 +38,7 @@
         {% block content %}{% endblock %}
     </div>
 
-    <div class="fixed float-end mr-4 back-to-top">
+    <div class="fixed float-end mr-4 back-to-top hide">
       <button type='button' class="btn btn-dark" id="load-button">
           <img class="svg-icon" src="/static/icons/arrow_up.svg" width="auto" alt="Up Arrow">
           <a href="#" class="text-white text-decoration-none">Tilbage til toppen</a>
@@ -88,6 +89,21 @@
         $(".mood-button").filter(`[id=${current_mood}]`).trigger("click");
       });
 
+      // Make back to top button only visibile after scrolling
+      $(document).scroll(function() {
+        var y = $(this).scrollTop();
+        var height_banner = $(".banner").height();
+        var height_settings = $(".settings").height();
+        if (y > height_banner + height_settings) {
+          $('.back-to-top').addClass("show")
+          $('.back-to-top').removeClass("hide")
+        } else {
+          $('.back-to-top').addClass("hide");
+          $('.back-to-top').removeClass("show")
+        }
+      });
+
+  
       function set_visibility(item, visible=True, class_visible='d-flex', class_invisible='d-none') {
         if (visible) {
           item.addClass(class_visible);
