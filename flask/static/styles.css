@@ -63,7 +63,7 @@
 
 .banner {
     background-image: url("/static/banner.png");
-    background-size: contain;
+    background-size: auto 100%;
 }
 
 /* IDs */
