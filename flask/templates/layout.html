@@ -38,7 +38,7 @@
         {% block content %}{% endblock %}
     </div>
 
-    <div class="fixed float-end mr-4 back-to-top">
+    <div class="fixed float-end mr-4 back-to-top hide">
       <button type='button' class="btn btn-dark" id="load-button">
           <img class="svg-icon" src="/static/icons/arrow_up.svg" width="auto" alt="Up Arrow">
           <a href="#" class="text-white text-decoration-none">Tilbage til toppen</a>
@@ -89,6 +89,21 @@
         $(".mood-button").filter(`[id=${current_mood}]`).trigger("click");
       });
 
+      // Make back to top button only visibile after scrolling
+      $(document).scroll(function() {
+        var y = $(this).scrollTop();
+        var height_banner = $(".banner").height();
+        var height_settings = $(".settings").height();
+        if (y > height_banner + height_settings) {
+          $('.back-to-top').addClass("show")
+          $('.back-to-top').removeClass("hide")
+        } else {
+          $('.back-to-top').addClass("hide");
+          $('.back-to-top').removeClass("show")
+        }
+      });
+
+  
       function set_visibility(item, visible=True, class_visible='d-flex', class_invisible='d-none') {
         if (visible) {
           item.addClass(class_visible);

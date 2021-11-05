@@ -113,3 +113,13 @@ hr.hr-text::before {
 hr.hr-solid {
     border-top: 2px solid #999;
 }
+
+.hide {
+    opacity:0;
+    transition: 10ms;
+}
+.show {
+    opacity:1;
+    transition: 500ms;
+    transition-timing-function: ease-in-out;
+}
