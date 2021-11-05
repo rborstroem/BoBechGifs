@@ -14,7 +14,7 @@
 
 .media-link {
     opacity: .75;
-    filter: invert(0%) sepia(0%) saturate(16%) hue-rotate(258deg) brightness(89%) contrast(104%);
+    filter: invert(0%) sepia(0%) saturate(36%) hue-rotate(210deg) brightness(100%) contrast(114%);
 }
 
 .media-link:hover {
