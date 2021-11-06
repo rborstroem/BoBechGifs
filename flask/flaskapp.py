@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, Response, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_talisman import Talisman
 from dotenv import load_dotenv
@@ -17,7 +17,8 @@ jawsdb_maria_url = os.getenv('JAWSDB_MARIA_URL')
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = jawsdb_maria_url
-Talisman(app, content_security_policy=None)
+
+talisman = Talisman(app, content_security_policy=None)
 
 # Establish DB connection and fetch content
 db = SQLAlchemy(app)
@@ -92,6 +93,11 @@ def home():
 @app.route('/robots.txt')
 def static_from_root():
     return send_from_directory(app.static_folder, request.path[1:])
+
+# Setting content-type for served JavaScript
+@app.route('/static/script.js')
+def script():
+    return send_from_directory(app.static_folder, 'script.js', mimetype='text/javascript')
 
 if __name__ == '__main__':
     app.run(debug=True)
