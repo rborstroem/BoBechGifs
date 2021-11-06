@@ -1,3 +1,9 @@
+:root {
+    --primary-color: #1DA1F2;
+    --bs-primary: #1DA1F2 !important;
+    --bs-blue: #1DA1F2 !important;
+}
+
 /************* Classes ******************/
 .copy-div, .copy-text-div {
     opacity: 0; 
@@ -37,7 +43,7 @@
 
 .mood-button {
     background-color: white;
-    color: #0d6efd;
+    color: var(--primary-color);
 }
 
 .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20rem; }
@@ -149,10 +155,80 @@ h1 {
     h1 {
         font-size: 70px;
     }
+  }
+
+@media screen and (max-width: 1000px) {
+    
+    .testimonials {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 1fr 1fr 1fr !important;
+    }
 }
+
+  blockquote {
+      padding: 10px 20px 10px 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1 !important;
+      height: auto;
+      justify-content: space-around;
+  }
+
+  .testimonials {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 5px;
+    row-gap: 5px;
+    grid-template-rows: 100%;
+    justify-items: center;
+    align-items: stretch;
+  }
+
+  .testimonials div {
+      display: flex;
+      width: 100%;
+      justify-content: start;
+  }
+
+
+  blockquote p {
+     font-style: italic; 
+     color: white;
+     text-align: start !important;
+     margin-bottom: 0 !important;
+  }
+
+  .tweet-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 20px 20px 20px 20px;
+    min-height: 80%;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .tweet-text img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7488%) hue-rotate(250deg) brightness(105%) contrast(105%);
+    margin-right: 20px;
+    height: 25px;
+  }
+
+  p a {
+      color: white !important
+  }
+
+  .tweet-info {
+      display: flex;
+      flex-direction: column;
+      font-size: 12px;
+  }
 
 @keyframes mymove
 {
   0%   { background-position: 0px; }
   100% { background-position: calc(997px + 30px); } /* Banner widtth + margin (?) that makes it align correctly */
 }
+

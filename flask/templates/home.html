@@ -8,7 +8,7 @@
                 {% for mood in moods %}
                     <input type="radio" class="btn-check" name="btnradio" id="{{mood}}" autocomplete="off">
                     <label class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}" for="{{mood}}" data-translated="{{translated_moods[mood]}}">{{ moods_emojies[mood] }}  ({{category_counts[mood]}})</label>
-                    {% endfor %}
+                {% endfor %}
             </div>
         </div>
         
@@ -47,30 +47,44 @@
         <span>TESTIMONIALS</span>
     </div>
 
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <div class="row justify-content-center align-items-center testimonials mt-4">
-        <div class="col text-center">
+    <div class="testimonials mt-4">
+        <div class="text-center tweet">
             <blockquote class="twitter-tweet" data-conversation="none" data-dnt="true">
-                <p lang="da" dir="ltr">Har du set den her forrygende samling? 150 Bo Bech-gifs til flittig brug. —&gt; 
-                    <a href="https://t.co/55Lzhu0jcY">https://t.co/55Lzhu0jcY</a>
-                </p>
-                &mdash; Lasse Kyed Rasmussen (@lassekrasmussen) 
-                <a href="https://twitter.com/lassekrasmussen/status/1290295076854218765?ref_src=twsrc%5Etfw">August 3, 2020</a>
+                <div class="tweet-text">
+                    <img src="/static/logos/twitter.svg" width="50" alt="Twitter">
+                    <p lang="da" dir="ltr">Har du set den her forrygende samling? 150 Bo Bech-gifs til flittig brug. —&gt; 
+                        <a href="https://t.co/55Lzhu0jcY">https://t.co/55Lzhu0jcY</a>
+                    </p>
+                </div>
+                <div class="tweet-info">
+                    &mdash; Lasse Kyed Rasmussen (@lassekrasmussen) 
+                    <a href="https://twitter.com/lassekrasmussen/status/1290295076854218765?ref_src=twsrc%5Etfw">August 3, 2020</a>
+                </div>
             </blockquote>
         </div>
-        <div class="col text-center">
+        <div class="text-center tweet">
+            <blockquote class="twitter-tweet" data-conversation="none" data-dnt="true">
+                <div class="tweet-text">
+                    <img src="/static/logos/twitter.svg" width="50" alt="Twitter">
+                    <p lang="da" dir="ltr">Har sat mig for at jeg kun vil bruge Bo Bech-GIFs fra nu af</p>
+                </div>
+                <div class="tweet-info">
+                    &mdash; nanna 3point.dk (@nannasoph) 
+                    <a href="https://twitter.com/nannasoph/status/1309232692748316672?ref_src=twsrc%5Etfw">September 24, 2020</a>
+                </div>
+            </blockquote>
+        </div>
+        <div class="text-center tweet">
             <blockquote class="twitter-tweet" data-dnt="true" data-cards="hidden">
-                <p lang="da" dir="ltr">Jeg er vild med alle de Bo Bech gifs der findes på Twitter. Der er en til enhver lejlighed! 
-                </p>
-                &mdash; Casper Valentin 🇩🇰 (@CasValentin) 
-                <a href="https://twitter.com/CasValentin/status/1296321490665844736?ref_src=twsrc%5Etfw">August 20, 2020</a>
-            </blockquote>
-        </div>
-        <div class="col text-center">
-            <blockquote class="twitter-tweet" data-conversation="none" data-dnt="true">
-                <p lang="da" dir="ltr">Har sat mig for at jeg kun vil bruge Bo Bech-GIFs fra nu af</p>
-                &mdash; nanna 3point.dk (@nannasoph) 
-                <a href="https://twitter.com/nannasoph/status/1309232692748316672?ref_src=twsrc%5Etfw">September 24, 2020</a>
+                <div class="tweet-text">
+                    <img src="/static/logos/twitter.svg" width="50" alt="Twitter">
+                    <p lang="da" dir="ltr">Jeg er vild med alle de Bo Bech gifs der findes på Twitter. Der er en til enhver lejlighed! 
+                    </p>
+                </div>
+                <div class="tweet-info tweet">
+                    &mdash; Casper Valentin 🇩🇰 (@CasValentin) 
+                    <a href="https://twitter.com/CasValentin/status/1296321490665844736?ref_src=twsrc%5Etfw">August 20, 2020</a>
+                </div>
             </blockquote>
         </div>
     </div> 
