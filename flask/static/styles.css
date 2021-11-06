@@ -126,9 +126,11 @@
 
 h1 {
     font-weight: bold;
-    font-size: 70px;
+    font-size: 40px;
     text-shadow: 0px 2px 2px #bbbbbb, 0px 2px 2px #fff;
 }
+
+
 
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (min-width: 750px) {
@@ -139,7 +141,15 @@ h1 {
     .btn-test::after {
       content: "Tilbage til toppen";
     }
-  }
+    
+    .btn-check + label::before {
+        content: attr(data-translated) ' ';
+    }
+
+    h1 {
+        font-size: 70px;
+    }
+}
 
 @keyframes mymove
 {
