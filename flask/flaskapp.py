@@ -7,6 +7,7 @@ import os
 import sys
 import math
 import requests
+import json
 
 # Load environment variables
 load_dotenv()
@@ -78,6 +79,27 @@ id_moods.reverse()
 preview_gifs.reverse()
 gifs.reverse()
 
+# GOT ERRORS ON SQL
+# SO FOR NOW, THE VALUES ARE HARDCODED HERE!
+moods_emojies = dict()
+moods_emojies['All'] = "\U0001F468" + u'\u200d' + "\U0001F373"
+moods_emojies['Angry'] = "\U0001F621"
+moods_emojies['Annoyed'] = "\U0001F644"
+moods_emojies['Cheerful'] = "\U0001F917"
+moods_emojies['Confused'] = "\U0001F635"
+moods_emojies['Disappointed'] = "\U0001F612"
+moods_emojies['Disgusted'] = "\U0001F922"
+moods_emojies['Funny'] = "\U0001F602"
+moods_emojies['Happy'] = "\U0001F603"
+moods_emojies['Negative'] = "\U0001F44E"
+moods_emojies['Positive'] = "\U0001F44D"
+moods_emojies['Romantic'] = "\U0001F970"
+moods_emojies['Sad'] = "\U0001F614"
+moods_emojies['Scared'] = "\U0001F630"
+moods_emojies['Serious'] = "\U0001F611"
+moods_emojies['Surprised'] = "\U0001F62F"
+
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -88,7 +110,8 @@ def home():
                                         ids=ids, 
                                         id_moods=id_moods,
                                         translated_moods=translated_moods,
-                                        has_text=has_text)
+                                        has_text=has_text,
+                                        moods_emojies=moods_emojies)
 
 if __name__ == '__main__':
     app.run(debug=True)

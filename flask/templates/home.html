@@ -7,7 +7,7 @@
             <div class="btn-group-justified pb-4 pt-4 text-center w-75" role="group" aria-label="Mood buttons">
                 {% for mood in moods %}
                     <input type="radio" class="btn-check" name="btnradio" id="{{mood}}" autocomplete="off">
-                    <label class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}" for="{{mood}}">{{translated_moods[mood]}} ({{category_counts[mood]}})</label>
+                    <label class="btn btn-outline-primary mb-2 mood-button" id="{{mood}}" for="{{mood}}" data-translated="{{translated_moods[mood]}}">{{ moods_emojies[mood] }}  ({{category_counts[mood]}})</label>
                     {% endfor %}
             </div>
         </div>
