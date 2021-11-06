@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_talisman import Talisman
 from dotenv import load_dotenv
@@ -79,7 +79,6 @@ preview_gifs.reverse()
 gifs.reverse()
 
 @app.route('/')
-@app.route('/home')
 def home():
     return render_template('home.html', preview_gifs=preview_gifs, 
                                         moods=mood_set,
@@ -89,6 +88,10 @@ def home():
                                         id_moods=id_moods,
                                         translated_moods=translated_moods,
                                         has_text=has_text)
+
+@app.route('/robots.txt')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 if __name__ == '__main__':
     app.run(debug=True)
