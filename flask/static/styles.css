@@ -1,5 +1,7 @@
 :root {
     --primary-color: #1DA1F2;
+    --bs-primary: #1DA1F2 !important;
+    --bs-blue: #1DA1F2 !important;
 }
 
 /************* Classes ******************/
@@ -159,15 +161,9 @@ h1 {
     
     .testimonials {
         grid-template-columns: 1fr !important;
-    }
-
-    .twitter-tweet {
-        width: 50% !important;
-        justify-self: center;
+        grid-template-rows: 1fr 1fr 1fr !important;
     }
 }
-
-
 
   blockquote {
       padding: 10px 20px 10px 20px;
